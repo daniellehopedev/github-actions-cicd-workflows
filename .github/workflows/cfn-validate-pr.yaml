@@ -2,7 +2,7 @@ name: Validate CloudFormation on PR
 
 on:
   pull_request:
-    types: [opened, synchronize, closed]
+    types: [opened, synchronize]
     paths:
       - 'cloudformation/**'
 

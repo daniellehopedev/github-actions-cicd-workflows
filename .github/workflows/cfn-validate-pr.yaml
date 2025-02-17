@@ -2,9 +2,11 @@ name: Validate CloudFormation on PR
 
 on:
   pull_request:
-    types: [opened, synchronize]
     paths:
       - 'cloudformation/**'
+  push:
+    branches:
+      - main
 
 permissions:
   pull-requests: write
@@ -13,6 +15,7 @@ permissions:
 jobs:
   validate-cfn:
     runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.merged != true }}
     steps:
       - uses: actions/checkout@v4
 
@@ -48,10 +51,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.pull_request.merged == true }}
     steps:
-      - name: Log PR merged status
-        run: |
-          echo "PR merged: ${{ github.event.pull_request.merged }}"
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:

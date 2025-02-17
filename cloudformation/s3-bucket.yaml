@@ -19,7 +19,7 @@ Resources:
         - Key: Environment
           Value: !Ref Environment
         - Key: Project
-          Value: GitHubActionsTestingPRCICD-5
+          Value: GitHubActionsTestingPRCICD-6
 
 Outputs:
   BucketName:
